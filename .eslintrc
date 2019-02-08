@@ -8,6 +8,7 @@
       "plugin:node/recommended"
     ],
     "parserOptions": {
+      "ecmaVersion": 9,
       "sourceType": "module"
     },
     "rules": {
