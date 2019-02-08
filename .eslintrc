@@ -1,6 +1,5 @@
 {
     "env": {
-      "es6": true,
       "node": true
     },
     "plugins": ["node"],
@@ -9,7 +8,6 @@
       "plugin:node/recommended"
     ],
     "parserOptions": {
-      "ecmaVersion": 6,
       "sourceType": "module"
     },
     "rules": {
