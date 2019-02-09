@@ -1,20 +1,20 @@
 const { Router } = require('express')
-const { errorController } = require('./error')
+const { errorHandler } = require('./error')
 
 const createRouter = (context) => {
-  const usersController = require('./users')(context)
-  const itemsController = require('./items')(context)
+  const userHandlers = require('./users')(context)
+  const itemHandlers = require('./items')(context)
 
   const router = Router()
-  router.post('/login', usersController.login)
-  router.post('/users', usersController.create)
-  router.use(usersController.verify)
+  router.post('/login', userHandlers.login)
+  router.post('/users', userHandlers.create)
+  router.use(userHandlers.verify)
 
-  router.get('/items/:id', itemsController.get)
-  router.get('/items', itemsController.list)
-  router.post('/items', itemsController.create)
+  router.get('/items/:id', itemHandlers.get)
+  router.get('/items', itemHandlers.list)
+  router.post('/items', itemHandlers.create)
 
-  router.use(errorController)
+  router.use(errorHandler)
   return router
 }
 
