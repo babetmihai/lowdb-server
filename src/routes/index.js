@@ -1,9 +1,9 @@
 const { Router } = require('express')
 const { errorHandler } = require('./error')
 
-const createRouter = (context) => {
-  const userHandlers = require('./users')(context)
-  const itemHandlers = require('./items')(context)
+module.exports = (...args) => {
+  const userHandlers = require('./users')(...args)
+  const itemHandlers = require('./items')(...args)
 
   const router = Router()
   router.post('/login', userHandlers.login)
@@ -17,5 +17,3 @@ const createRouter = (context) => {
   router.use(errorHandler)
   return router
 }
-
-module.exports = createRouter
