@@ -1,4 +1,4 @@
-const { fetch } = require('../src/lib/utils')
+const fetch = require('isomorphic-fetch')
 const { port, token } = process.env
 
 it('it should get a user auth flow', async () => {

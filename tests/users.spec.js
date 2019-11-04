@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const assert = require('assert')
-const { fetch } = require('../src/lib/utils')
+const fetch = require('isomorphic-fetch')
 const { port } = process.env
 
 it('it should create a user auth flow', async () => {
