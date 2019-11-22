@@ -1,5 +1,6 @@
-const axios = require('axios')
 const { port, token } = process.env
+
+const axios = require('axios')
 
 it('it should create an item', async () => {
   await axios.post(
