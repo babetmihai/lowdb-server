@@ -1,9 +1,9 @@
 
-const withError = (handlers) => {
-  return Object.keys(handlers)
+const withError = (controllers) => {
+  return Object.keys(controllers)
     .reduce((acc, key) => ({
       ...acc,
-      [key]: (req, res, next) => handlers[key](req, res, next)
+      [key]: (req, res, next) => controllers[key](req, res, next)
         .catch((error) => next(error))
     }), {})
 }
