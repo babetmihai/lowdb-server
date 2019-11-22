@@ -1,17 +1,14 @@
-const fetch = require('isomorphic-fetch')
+const axios = require('axios')
 const { port, token } = process.env
 
-it('it should get a user auth flow', async () => {
-  await fetch(`http://localhost:${port}/items`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      name: 'test1'
-    })
-  })
-    .then((res) => res.json())
+it('it should create an item', async () => {
+  await axios.post(
+    `http://localhost:${port}/items`,
+    { name: 'test1' },
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  )
 })
