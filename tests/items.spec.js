@@ -18,6 +18,7 @@ it('it should create and list items', async () => {
       'Authorization': `Bearer ${token}`
     }
   })
-  const { name } = Object.values(data)[0]
-  assert.deepEqual(name, 'test1')
+  const hasItem = Object.values(data)
+    .some((item) => item.name === 'test1')
+  assert.equal(hasItem, true)
 })
