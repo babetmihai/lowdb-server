@@ -1,10 +1,9 @@
 
 const low = require('lowdb')
 const FileAsync = require('lowdb/adapters/FileAsync')
-
-let instance
 const { dbPath } = process.env
 
+let instance
 const db = () => instance
 db.init = async () => {
   const adapter = new FileAsync(dbPath)
