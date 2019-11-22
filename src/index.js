@@ -1,11 +1,11 @@
+const { port } = process.env
+
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const routes = require('./routes')
 const db = require('./db')
-
-const { port } = process.env
 
 const app = express()
 app.use(logger('dev'))

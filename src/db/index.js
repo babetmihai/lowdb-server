@@ -1,7 +1,7 @@
+const { dbPath } = process.env
 
 const low = require('lowdb')
 const FileAsync = require('lowdb/adapters/FileAsync')
-const { dbPath } = process.env
 
 let instance
 const db = () => instance
