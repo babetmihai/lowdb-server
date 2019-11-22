@@ -9,12 +9,11 @@ it('it should create a user auth flow', async () => {
     email: 'mihai.babet@gmail.com',
     password: 'admin'
   })
-
-  const response = await axios.post(`http://localhost:${port}/login`, {
+  const { data } = await axios.post(`http://localhost:${port}/login`, {
     email: 'mihai.babet@gmail.com',
     password: 'admin'
   })
-  const { data: { token } } = response
+  const { token } = data
   const { email } = jwt.decode(token)
   assert.deepEqual(email, 'mihai.babet@gmail.com')
 })

@@ -15,7 +15,7 @@ const getItem = async ({ id, userId }) => {
 }
 
 const listItems = ({ value, userId }) => {
-  if (!value) throw new Error(400)
+  if (!value) return db().get('items').value()
   return db().get('items')
     .filter((item) => (
       item.userId === userId &&
