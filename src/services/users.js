@@ -4,6 +4,7 @@ const { privateKey } = process.env
 const db = require('../db')
 
 const createUser = async ({ id, email, password }) => {
+  if (!email || !password) throw new Error(400)
   const existing = await getUserByEmail({ email })
   if (existing) throw new Error(400)
   const user = {
@@ -24,12 +25,14 @@ const getUserByEmail = ({ email }) => {
 }
 
 const verifyToken = async ({ token }) => {
+  if (!token) throw new Error(401)
   const { userId } = await jwt.verify(token, privateKey)
   if (!userId) throw new Error(401)
   return { userId }
 }
 
 const createToken = async ({ email, password }) => {
+  if (!email || !password) throw new Error(400)
   const user = await getUserByEmail({ email })
   if (!bcrypt.compareSync(password, user.hash)) throw new Error(401)
   return jwt.sign({

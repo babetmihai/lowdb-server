@@ -1,16 +1,16 @@
 const { Router } = require('express')
 const { errorHandler } = require('./error')
-const userHandlers = require('./users')
-const itemHandlers = require('./items')
+const users = require('./users')
+const items = require('./items')
 
 const router = Router()
-router.post('/login', userHandlers.login)
-router.post('/users', userHandlers.create)
-router.use(userHandlers.verify)
+router.post('/login', users.login)
+router.post('/users', users.create)
+router.use(users.verify)
 
-router.get('/items/:id', itemHandlers.get)
-router.get('/items', itemHandlers.list)
-router.post('/items', itemHandlers.create)
+router.get('/items/:id', items.get)
+router.get('/items', items.list)
+router.post('/items', items.create)
 
 router.use(errorHandler)
 

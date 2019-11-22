@@ -11,14 +11,12 @@ module.exports = withError({
   create: async (req, res) => {
     const id = uuidv1()
     const { email, password } = req.body
-    if (!email || !password) throw new Error(400)
     const user = await createUser({ id, email, password })
     return res.status(200).json(user)
   },
 
   verify: async (req, res, next) => {
     const token = get(req, 'headers.authorization', '').replace('Bearer ', '')
-    if (!token) throw new Error(401)
     const { userId } = await verifyToken({ token })
     req.locals = { ...req.locals, userId }
     return next()
@@ -26,7 +24,6 @@ module.exports = withError({
 
   login: async (req, res) => {
     const { email, password } = req.body
-    if (!email || !password) throw new Error(400)
     const token = await createToken({ email, password })
     return res.status(200).json({ token })
   }
