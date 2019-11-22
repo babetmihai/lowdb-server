@@ -1,4 +1,4 @@
-const { db } = require('../db')
+const db = require('../db')
 
 const createItem = async ({ id, name, userId }) => {
   const item = { id, name, userId }

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { privateKey } = process.env
-const { db } = require('../db')
+const db = require('../db')
 
 const createUser = async ({ id, email, password }) => {
   const existing = await getUserByEmail({ email })

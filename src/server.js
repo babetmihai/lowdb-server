@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const routes = require('./routes')
-const { db, init } = require('./db')
+const db = require('./db')
 
 const app = express()
 app.use(logger('dev'))
@@ -14,9 +14,9 @@ app.use(cors({
   methods: ['GET', 'POST']
 }))
 
-module.exports = async ({ port, dbPath }) => {
-  await init({ dbPath })
+module.exports = async ({ port }) => {
   app.use(routes)
+  await db.init()
   return app.listen(port, () => {
     console.log(`Server running on port ${port}`) // eslint-disable-line no-console
   })
