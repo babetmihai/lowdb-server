@@ -1,5 +1,5 @@
 
-function withError(handlers) {
+const withError = (handlers) => {
   return Object.keys(handlers)
     .reduce((acc, key) => ({
       ...acc,
@@ -8,7 +8,7 @@ function withError(handlers) {
     }), {})
 }
 
-function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-vars
+const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused-vars
   if (!err) return res.sendStatus(404)
   if (isNaN(err.message)) return res.sendStatus(500)
   return res.sendStatus(err.message)
