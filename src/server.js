@@ -5,6 +5,8 @@ const logger = require('morgan')
 const routes = require('./routes')
 const db = require('./db')
 
+const { port } = process.env
+
 const app = express()
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -14,7 +16,7 @@ app.use(cors({
   methods: ['GET', 'POST']
 }))
 
-module.exports = async ({ port }) => {
+module.exports = async () => {
   app.use(routes)
   await db.init()
   return app.listen(port, () => {

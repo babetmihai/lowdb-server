@@ -3,9 +3,9 @@ require('dotenv').config({ path: './.test.env' })
 const Mocha = require('mocha')
 const fs = require('fs')
 const path = require('path')
-const createApp = require('../src/server.js')
+const server = require('../src/server.js')
 
-const { port, dbPath } = process.env
+const { dbPath } = process.env
 
 const runTests = async () => {
   const mocha = new Mocha()
@@ -17,7 +17,7 @@ const runTests = async () => {
       )
     })
   fs.writeFileSync(dbPath, JSON.stringify({}), 'utf8')
-  const app = await createApp({ port, dbPath })
+  const app = await server()
   mocha.run((failures) => {
     app.close()
     process.exitCode = failures ? 1 : 0
