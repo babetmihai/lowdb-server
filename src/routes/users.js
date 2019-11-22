@@ -7,12 +7,12 @@ const {
   createToken
 } = require('../services/users')
 
-module.exports = ({ db }) => withError({
+module.exports = withError({
   create: async (req, res) => {
     const id = uuidv1()
     const { email, password } = req.body
     if (!email || !password) throw new Error(400)
-    const user = await createUser({ db, id, email, password })
+    const user = await createUser({ id, email, password })
     return res.status(200).json(user)
   },
 
@@ -27,7 +27,7 @@ module.exports = ({ db }) => withError({
   login: async (req, res) => {
     const { email, password } = req.body
     if (!email || !password) throw new Error(400)
-    const token = await createToken({ db, email, password })
+    const token = await createToken({ email, password })
     return res.status(200).json({ token })
   }
 })

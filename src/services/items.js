@@ -1,14 +1,15 @@
+const { db } = require('../db')
 
-const createItem = async ({ db, id, name, userId }) => {
+const createItem = async ({ id, name, userId }) => {
   const item = { id, name, userId }
-  await db.set(`items.${id}`, item).write()
+  await db().set(`items.${id}`, item).write()
   return item
 }
 
-const getItem = ({ db, id }) => db.get(`items.${id}`).value()
+const getItem = ({ id }) => db.get(`items.${id}`).value()
 
-const listItems = ({ db, value, userId }) => {
-  return db.get('items')
+const listItems = ({ value, userId }) => {
+  return db().get('items')
     .filter((item) => (
       item.userId === userId &&
       item.name.includes(value)

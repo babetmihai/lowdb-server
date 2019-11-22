@@ -1,21 +1,24 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { privateKey } = process.env
+const { db } = require('../db')
 
-const createUser = async ({ db, id, email, password }) => {
-  const existing = await getUserByEmail({ db, email })
+const createUser = async ({ id, email, password }) => {
+  const existing = await getUserByEmail({ email })
   if (existing) throw new Error(400)
   const user = {
     id,
     email,
     hash: bcrypt.hashSync(password, 10)
   }
-  await db.set(`users.${id}`, user).write()
+
+  await db().set(`users.${id}`, user).write()
+
   return user
 }
 
-const getUserByEmail = ({ db, email }) => {
-  return db.get('users')
+const getUserByEmail = ({ email }) => {
+  return db().get('users')
     .find({ email })
     .value()
 }
@@ -26,8 +29,8 @@ const verifyToken = async ({ token }) => {
   return { userId }
 }
 
-const createToken = async ({ db, email, password }) => {
-  const user = await getUserByEmail({ db, email })
+const createToken = async ({ email, password }) => {
+  const user = await getUserByEmail({ email })
   if (!bcrypt.compareSync(password, user.hash)) throw new Error(401)
   return jwt.sign({
     userId: user.id,
