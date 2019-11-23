@@ -1,13 +1,11 @@
-const uuidv1 = require('uuid/v1')
 const { withError } = require('./error')
 const itemService = require('../services/items')
 
 module.exports = withError({
   create: async (req, res) => {
-    const id = uuidv1()
     const { name } = req.body
     const { userId } = req.locals
-    const item = await itemService.createItem({ id, name, userId })
+    const item = await itemService.createItem({ name, userId })
     res.status(200).json(item)
   },
 

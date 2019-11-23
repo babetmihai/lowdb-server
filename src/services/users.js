@@ -1,13 +1,15 @@
 const { privateKey } = process.env
 
+const uuidv1 = require('uuid/v1')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require('../db')
 
-const createUser = async ({ id, email, password }) => {
+const createUser = async ({ email, password }) => {
   if (!email || !password) throw new Error(400)
   const existing = await getUserByEmail({ email })
   if (existing) throw new Error(400)
+  const id = uuidv1()
   const hash = bcrypt.hashSync(password, 10)
   const user = { id, email, hash }
   await db().set(`users.${id}`, user).write()

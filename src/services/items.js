@@ -1,7 +1,9 @@
 const db = require('../db')
+const uuidv1 = require('uuid/v1')
 
-const createItem = async ({ id, name, userId }) => {
+const createItem = async ({ name, userId }) => {
   if (!name) throw new Error(400)
+  const id = uuidv1()
   const item = { id, name, userId }
   await db().set(`items.${id}`, item).write()
   return item

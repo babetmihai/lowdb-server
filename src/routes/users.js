@@ -1,13 +1,11 @@
-const uuidv1 = require('uuid/v1')
 const get = require('lodash/get')
 const { withError } = require('./error')
 const userService = require('../services/users')
 
 module.exports = withError({
   create: async (req, res) => {
-    const id = uuidv1()
     const { email, password } = req.body
-    const user = await userService.createUser({ id, email, password })
+    const user = await userService.createUser({ email, password })
     res.status(200).json(user)
   },
 
