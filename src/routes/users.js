@@ -8,19 +8,19 @@ module.exports = withError({
     const id = uuidv1()
     const { email, password } = req.body
     const user = await userService.createUser({ id, email, password })
-    return res.status(200).json(user)
+    res.status(200).json(user)
   },
 
   verify: async (req, res, next) => {
     const token = get(req, 'headers.authorization', '').replace('Bearer ', '')
     const { userId } = await userService.verifyToken({ token })
     req.locals = { ...req.locals, userId }
-    return next()
+    next()
   },
 
   login: async (req, res) => {
     const { email, password } = req.body
     const token = await userService.createToken({ email, password })
-    return res.status(200).json({ token })
+    res.status(200).json({ token })
   }
 })

@@ -9,9 +9,19 @@ const withError = (handlers) => {
 }
 
 const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused-vars
-  if (!err) return res.sendStatus(404)
-  if (isNaN(err.message)) return res.sendStatus(500)
-  return res.sendStatus(err.message)
+  switch (true) {
+    case (!err): {
+      res.sendStatus(404)
+      break
+    }
+    case (isNaN(err.message)): {
+      res.sendStatus(500)
+      break
+    }
+    default: {
+      res.sendStatus(err.message)
+    }
+  }
 }
 
 module.exports = {

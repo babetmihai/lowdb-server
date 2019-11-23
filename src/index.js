@@ -17,9 +17,9 @@ app.use(cors({
 }))
 
 module.exports = async () => {
-  app.use(routes)
   await db.init()
-  return app.listen(port, () => {
+  app.use(routes)
+  app.listen(port, () => {
     console.log(`Server running on port ${port}`) // eslint-disable-line no-console
   })
 }
