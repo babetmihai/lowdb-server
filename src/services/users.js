@@ -10,7 +10,7 @@ const createUser = async ({ email, password }) => {
   const existing = await getUserByEmail({ email })
   if (existing) throw new Error(400)
   const id = uuidv1()
-  const hash = bcrypt.hashSync(password, 10)
+  const hash = await bcrypt.hash(password, 10)
   const user = { id, email, hash }
   await db().set(`users.${id}`, user).write()
   return user
