@@ -32,7 +32,8 @@ const verifyToken = async ({ token }) => {
 const createToken = async ({ email, password }) => {
   if (!email || !password) throw new Error(400)
   const user = await getUserByEmail({ email })
-  if (!bcrypt.compareSync(password, user.hash)) throw new Error(401)
+  const authenticated = await bcrypt.compare(password, user.hash)
+  if (!authenticated) throw new Error(401)
   return jwt.sign({
     userId: user.id,
     email: user.email
