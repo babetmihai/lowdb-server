@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const assert = require('assert')
 const axios = require('axios')
 
-it('it should create a user auth flow', async () => {
+it('it should create a user and login', async () => {
   await axios.post(`http://localhost:${port}/users`,  {
     email: 'mihai.babet@gmail.com',
     password: 'admin'
