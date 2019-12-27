@@ -1,5 +1,5 @@
 const { privateKey } = process.env
-
+const { createRecord } = require('./history')
 const uuidv1 = require('uuid/v1')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -12,6 +12,7 @@ const createUser = async ({ email, password }) => {
   const id = uuidv1()
   const hash = await bcrypt.hash(password, 10)
   const user = { id, email, hash }
+  createRecord({ userId: id, recordId: id, recordType: 'create-user' })
   await db().set(`users.${id}`, user).write()
   return user
 }

@@ -1,10 +1,12 @@
 const db = require('../db')
+const { createRecord } = require('./history')
 const uuidv1 = require('uuid/v1')
 
 const createItem = async ({ name, userId }) => {
   if (!name) throw new Error(400)
   const id = uuidv1()
   const item = { id, name, userId }
+  createRecord({ userId, recordId: id, recordType: 'create-item' })
   await db().set(`items.${id}`, item).write()
   return item
 }
