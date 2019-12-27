@@ -46,7 +46,8 @@
     "node/no-unsupported-features": 0,
     "node/no-unpublished-require": "warn",
     "no-constant-condition": 0,
-    "no-process-exit": "off"
+    "no-process-exit": "off",
+    "no-console": 0
   },
   "globals": {
     "fetch": true,
