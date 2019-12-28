@@ -2,9 +2,9 @@
 const itemService = require('../services/items')
 const { Router } = require('express')
 
-const router = Router({ mergeParams: true })
+const router = Router()
 
-router.post('/', async (req, res, next) => {
+router.post('/items', async (req, res, next) => {
   try {
     const { name } = req.body
     const { userId } = req.locals
@@ -15,7 +15,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/items', async (req, res, next) => {
   try {
     const { value } = req.query
     const { userId } = req.locals
@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/items/:id', async (req, res, next) => {
   try {
     const { id } = req.params
     const { userId } = req.locals
