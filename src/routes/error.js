@@ -1,14 +1,5 @@
 
-const withError = (handlers) => {
-  return Object.keys(handlers)
-    .reduce((acc, key) => ({
-      ...acc,
-      [key]: (req, res, next) => handlers[key](req, res, next)
-        .catch((error) => next(error))
-    }), {})
-}
-
-const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused-vars
+module.exports = (err, req, res, next) => { // eslint-disable-line no-unused-vars
   switch (true) {
     case (!err): {
       res.sendStatus(404)
@@ -23,9 +14,3 @@ const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused
     }
   }
 }
-
-module.exports = {
-  withError,
-  errorHandler
-}
-
