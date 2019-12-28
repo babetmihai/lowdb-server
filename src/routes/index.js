@@ -4,6 +4,7 @@ const auth = require('./auth')
 const items = require('./items')
 
 const router = Router()
+
 router.use(auth)
 router.use('/items', items)
 router.use(error)
