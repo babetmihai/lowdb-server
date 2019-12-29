@@ -5,8 +5,7 @@ const items = require('./items')
 
 const router = Router()
 
-router.use(auth)
-router.use(items)
-router.use(error)
-
 module.exports = router
+  .use(auth)
+  .use(items)
+  .use(error)
