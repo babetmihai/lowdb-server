@@ -9,6 +9,7 @@ router.post('/items', async (req, res, next) => {
     const { name } = req.body
     const { userId } = req.locals
     const item = await itemService.createItem({ name, userId })
+
     res.status(200).json(item)
   } catch (error) {
     next(error)

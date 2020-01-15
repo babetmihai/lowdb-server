@@ -1,11 +1,12 @@
 const { privateKey } = process.env
+import { User } from '../models'
 
 import uuidv1 from 'uuid/v1'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import db from '../db'
 
-export const createUser = async ({ email, password }) => {
+export const createUser = async ({ email, password }): Promise<User> => {
   if (!email || !password) throw new Error('400')
   const existing = await getUserByEmail({ email })
   if (existing) throw new Error('400')
@@ -16,7 +17,7 @@ export const createUser = async ({ email, password }) => {
   return user
 }
 
-export const getUserByEmail = ({ email }) => {
+export const getUserByEmail = ({ email }): Promise<User> => {
   return db().get('users')
     .find({ email })
     .value()
