@@ -1,7 +1,4 @@
 
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
@@ -19,7 +16,7 @@ app.use(cors({
   methods: ['GET', 'POST']
 }))
 
-export default () => {
+export default async () => {
   app.use(routes)
   app.listen(port, () => {
     console.log(`Server running on port ${port}`) // eslint-disable-line no-console
