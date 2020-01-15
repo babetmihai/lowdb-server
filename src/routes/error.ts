@@ -2,15 +2,15 @@
 export default (err, req, res, next) => { // eslint-disable-line no-unused-vars
   switch (true) {
     case (!err): {
-      res.sendStatus(404)
+      res.status(404).send(err)
       break
     }
     case (isNaN(err.message)): {
-      res.sendStatus(500)
+      res.status(500).send(err)
       break
     }
     default: {
-      res.sendStatus(err.message)
+      res.status(err.message).send(err)
     }
   }
 }

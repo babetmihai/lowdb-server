@@ -17,6 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const routes_1 = __importDefault(require("./routes"));
+const db_1 = require("./db");
 const { port } = process.env;
 const app = express_1.default();
 app.use(morgan_1.default('dev'));
@@ -27,8 +28,9 @@ app.use(cors_1.default({
     methods: ['GET', 'POST']
 }));
 exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield db_1.init();
     app.use(routes_1.default);
-    app.listen(port, () => {
+    return app.listen(port, () => {
         console.log(`Server running on port ${port}`); // eslint-disable-line no-console
     });
 });

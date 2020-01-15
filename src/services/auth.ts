@@ -12,12 +12,12 @@ export const createUser = async ({ email, password }) => {
   const id = uuidv1()
   const hash = await bcrypt.hash(password, 10)
   const user = { id, email, hash }
-  await db.set(`users.${id}`, user).write()
+  await db().set(`users.${id}`, user).write()
   return user
 }
 
 export const getUserByEmail = ({ email }) => {
-  return db.get('users')
+  return db().get('users')
     .find({ email })
     .value()
 }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
+    "pretest": "npm run build",
     "test": "node scripts/test.js",
     "build": "tsc",
     "prestart": "npm run build",
@@ -17,6 +18,7 @@
     "nodemon": "^1.14.12"
   },
   "dependencies": {
+    "@types/lowdb": "^1.0.9",
     "@types/node": "^13.1.7",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.4",

@@ -4,6 +4,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import logger from 'morgan'
 import routes from  './routes'
+import { init } from './db'
 
 
 const { port } = process.env
@@ -17,8 +18,10 @@ app.use(cors({
 }))
 
 export default async () => {
+  await init()
   app.use(routes)
-  app.listen(port, () => {
+  
+  return app.listen(port, () => {
     console.log(`Server running on port ${port}`) // eslint-disable-line no-console
   })
 }

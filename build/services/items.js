@@ -19,21 +19,21 @@ exports.createItem = ({ name, userId }) => __awaiter(void 0, void 0, void 0, fun
         throw new Error('400');
     const id = v1_1.default();
     const item = { id, name, userId };
-    yield db_1.default.set(`items.${id}`, item).write();
+    yield db_1.default().set(`items.${id}`, item).write();
     return item;
 });
 exports.getItem = ({ id, userId }) => __awaiter(void 0, void 0, void 0, function* () {
     if (!id)
         throw new Error('400');
-    const item = yield db_1.default.get(`items.${id}`).value();
+    const item = yield db_1.default().get(`items.${id}`).value();
     if (!item || item.userId !== userId)
         throw new Error('404');
     return item;
 });
 exports.listItems = ({ value, userId }) => {
     if (!value)
-        return db_1.default.get('items').value();
-    return db_1.default.get('items')
+        return db_1.default().get('items').value();
+    return db_1.default().get('items')
         .filter((item) => (item.userId === userId &&
         item.name.includes(value)))
         .sortBy('name')

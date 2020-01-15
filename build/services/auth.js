@@ -26,11 +26,11 @@ exports.createUser = ({ email, password }) => __awaiter(void 0, void 0, void 0, 
     const id = v1_1.default();
     const hash = yield bcrypt_1.default.hash(password, 10);
     const user = { id, email, hash };
-    yield db_1.default.set(`users.${id}`, user).write();
+    yield db_1.default().set(`users.${id}`, user).write();
     return user;
 });
 exports.getUserByEmail = ({ email }) => {
-    return db_1.default.get('users')
+    return db_1.default().get('users')
         .find({ email })
         .value();
 };
