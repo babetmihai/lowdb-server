@@ -1,5 +1,5 @@
 
-module.exports = (err, req, res, next) => { // eslint-disable-line no-unused-vars
+export default (err, req, res, next) => { // eslint-disable-line no-unused-vars
   switch (true) {
     case (!err): {
       res.sendStatus(404)

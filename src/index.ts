@@ -1,12 +1,13 @@
+
+import dotenv from 'dotenv'
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import logger from 'morgan'
+import routes from  './routes'
+
+dotenv.config()
 const { port } = process.env
-
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const logger = require('morgan')
-const routes = require('./routes')
-const db = require('./db')
-
 const app = express()
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -17,7 +18,6 @@ app.use(cors({
 }))
 
 module.exports = async () => {
-  await db.init()
   app.use(routes)
   return app.listen(port, () => {
     console.log(`Server running on port ${port}`) // eslint-disable-line no-console

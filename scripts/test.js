@@ -1,10 +1,9 @@
-require('dotenv').config({ path: './.test.env' })
 const { dbPath } = process.env
 
 const Mocha = require('mocha')
 const fs = require('fs')
 const path = require('path')
-const server = require('../src')
+const server = require('../build')
 
 const runTests = async () => {
   const mocha = new Mocha()
