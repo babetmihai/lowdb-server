@@ -1,12 +1,12 @@
 const { privateKey } = process.env
-import { User } from '../types'
 
 import uuidv1 from 'uuid/v1'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import db from '../db'
+import { User } from '../types'
 
-export const createUser = async ({ email, password }): Promise<User> => {
+export const createUser =  async ({ email, password }): Promise<User> => {
   if (!email || !password) throw new Error('400')
   const existing = await getUserByEmail({ email })
   if (existing) throw new Error('400')

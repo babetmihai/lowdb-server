@@ -12,6 +12,8 @@
   "author": "Mihai Babet",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
     "eslint": "^5.4.0",
     "eslint-plugin-node": "^6.0.0",
     "mocha": "^5.2.0",
@@ -32,7 +34,6 @@
     "lowdb": "^1.0.0",
     "morgan": "^1.3.1",
     "typescript": "^3.7.4",
-    "typescript-eslint-parser": "^22.0.0",
     "uuid": "^3.3.2"
   },
   "description": ""

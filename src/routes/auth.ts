@@ -7,7 +7,7 @@ const router = Router()
 router.post('/login', async (req, res, next) => {
   try {
     const { email, password } = req.body
-    const token = await authService.createToken({ email, password })
+    const token =  await authService.createToken({ email, password })
     res.status(200).json({ token })
   } catch (error) {
     next(error)

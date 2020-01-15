@@ -1,11 +1,11 @@
 export interface User {
-  id: String,
-  email: String,
-  hash: String
+  id: string;
+  email: string;
+  hash?: string;
 }
 
 export interface Item {
-  id: String, 
-  name: String, 
-  userId: String
+  id: string;
+  name: string;
+  userId: string;
 }
