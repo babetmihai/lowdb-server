@@ -5,4 +5,5 @@ jsconfig.json
 
 #Folders
 /node_modules
+/build
 /data/*.json
