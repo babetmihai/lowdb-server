@@ -1,2 +1,2 @@
-const server = require('../build')
+const server = require('../build').default
 server()

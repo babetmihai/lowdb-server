@@ -6,7 +6,7 @@
     "test": "node scripts/test.js",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "nodemon ./build"
+    "start": "nodemon ./scripts/start.js"
   },
   "author": "Mihai Babet",
   "license": "ISC",
