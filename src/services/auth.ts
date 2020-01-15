@@ -1,5 +1,5 @@
 const { privateKey } = process.env
-import { User } from '../models'
+import { User } from '../types'
 
 import uuidv1 from 'uuid/v1'
 import jwt from 'jsonwebtoken'

@@ -1,6 +1,6 @@
 import db from '../db'
 import uuidv1 from 'uuid/v1'
-import { Item } from '../models'
+import { Item } from '../types'
 
 export const createItem = async ({ name, userId }): Promise<Item> => {
   if (!name) throw new Error('400')
